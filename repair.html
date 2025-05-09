@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <title>แจ้งซ่อม / ร้องเรียน</title>
+  <style>
+    body {       
+      font-family: 'Kanit', sans-serif;
+      background: #f7f7f7; margin: 0; }
+    .tab-bar {
+      display: flex;
+      justify-content: center;
+      background: F5F6FA;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 3px solid transparent;
+      color: #999;
+    }
+
+    .tab.active {
+      color: #000;
+      border-bottom: 3px solid #007bff;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    label, textarea, input, select, button {
+      display: block;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+
+     input, select {
+      padding: 10px;
+      border-radius: 16px;
+      border: 1px solid #ccc;
+    }
+    .textarea-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.textarea-wrapper textarea {
+    width: 60%;
+    padding: 20px;
+    border-radius: 16px;
+    border: 1px solid #ccc;
+}
+
+    button {
+      background: #007bff;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+     display: block;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 0;
+    }
+    input[type="file"] {
+    border: none;
+    padding: 10px 0;
+    background: #f0f0f0;
+    border-radius: 5px;
+    }
+    .uploadpic {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 10px; 
+    margin-top: 20px;
+        }
+    .uploadpic label {
+    font-size: 16px;
+        }
+    .uploadpic input {
+    margin-top: 5px;
+        }
+
+  </style>
+</head>
+<body>
+
+  <!-- ปุ่มสลับ Tab -->
+  <div class="tab-bar">
+    <div class="tab active" onclick="switchTab('repair', this)">แจ้งซ่อม</div>
+    <div class="tab" onclick="switchTab('complaint', this)">ร้องเรียน</div>
+  </div>
+
+  <!-- Form: แจ้งซ่อม -->
+  <div class="container tab-content active" id="repair">
+    <h2>แจ้งซ่อม</h2>
+    <form>
+      <label>หัวข้อ</label>
+      <select required>
+        <option value="">..................</option>
+        <option value="A">ซ่อมประตู</option>
+        <option value="B">ไฟฟ้า</option>
+        <option value="C">ประปา</option>
+      </select>
+
+      <label>คำอธิบายเพิ่มเติม</label>
+      <div class="textarea-wrapper">
+        <textarea rows="20" placeholder="อธิบายปัญหา..."></textarea>
+      </div>
+
+      <div class="uploadpic">
+        <label>อัพโหลดวิดีโอ / รูปภาพ</label>
+        <input type="file" accept="image/*,video/*">
+  
+        <label>หรือ</label>
+  
+        <label>ถ่ายรูป / วิดีโอ</label>
+        <input type="file" accept="image/*,video/*" capture="environment">
+      </div>
+
+      <button type="submit">ส่งแจ้งซ่อม</button>
+    </form>
+  </div>
+
+  <!-- Form: ร้องเรียน -->
+  <div class="container tab-content" id="complaint">
+    <h2>ร้องเรียน</h2>
+    <form>
+      <label>หัวข้อ</label>
+      <select required>
+        <option value="">..................</option>
+        <option value="A">นิติบุคคลไม่ให้ความร่วมมือ</option>
+        <option value="B">พฤติกรรมเพื่อนบ้าน</option>
+        <option value="C">อื่น ๆ</option>
+      </select>
+
+      <label>คำอธิบายเพิ่มเติม</label>
+      <div class="textarea-wrapper">
+        <textarea rows="20" placeholder="อธิบายปัญหา..."></textarea>
+      </div>
+        <div class="uploadpic">
+      <label>อัพโหลดวิดีโอ / รูปภาพ</label>
+      <input type="file" accept="image/*,video/*">
+
+      <label>หรือ</label>
+
+      <label>ถ่ายรูป / วิดีโอ</label>
+      <input type="file" accept="image/*,video/*" capture="environment">
+    </div>
+
+
+      <button type="submit">ส่งเรื่องร้องเรียน</button>
+    </form>
+  </div>
+
+  <script>
+    function switchTab(tabId, element) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+
+      element.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+  </script>
+</body>
+</html>
